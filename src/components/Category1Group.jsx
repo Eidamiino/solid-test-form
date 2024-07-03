@@ -7,7 +7,7 @@ export default function Category1Group(props) {
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);
-        url.searchParams.set('categoryPath', props.titles[index]);
+        url.searchParams.set('categoryPath', props.items[index].categoryFullCode);
         window.history.pushState(null, '', url.toString());
 
         const event = new Event('urlChangeCategory1');
@@ -16,11 +16,11 @@ export default function Category1Group(props) {
 
     return (
         <div>
-            {props.titles.map((title, index) => (
+            {props.items.map((category, index) => (
                 <Category1
                     index={index}
-                    title={title}
-                    icon="fas fa-h"
+                    title={category.categoryTitle}
+                    icon={category.categoryIcon}
                     selected={selectedIndex() == index}
                     onSelect={() => changeSelected(index)}
                 />
