@@ -68,7 +68,7 @@ const category3=[
   },
   {
     categoryLevel: 3,
-    categoryFullCode: "produkty.employee_benefits.doplnkove_penzijni_sporeni",
+    categoryFullCode: "produkty.zivotni_pojisteni.doplnkove_penzijni_sporeni",
     categoryTitle: "Doplňkové penzijní spoření",
     categoryTooltip: "",
     categoryIcon: "",
@@ -95,10 +95,13 @@ function App() {
     window.addEventListener('urlChangeCategory1', changeUrl);
   });
 
-  const getFilteredSubcategories = (categories) => {
+  const getFilteredCategories3 = (categories) => {
     if (!categoryPath()) return [];
-    console.log("snazim" + categoryPath())
-    return categories.filter(subcategory => subcategory.categoryFullCode.split(".")[0]==categoryPath().split(".")[0]);
+    return categories.filter(subcategory => subcategory.categoryFullCode.split(".")[0] + subcategory.categoryFullCode.split(".")[1] == categoryPath().split(".")[0] + categoryPath().split(".")[1]);
+  };
+  const getFilteredCategories2 = (categories) => {
+    if (!categoryPath()) return [];
+    return categories.filter(subcategory => subcategory.categoryFullCode.split(".")[0] == categoryPath().split(".")[0]);
   };
 
   return (
@@ -112,7 +115,7 @@ function App() {
         <div class='row'>
           {categoryPath() && (
             <div>
-              <Category2Group items={getFilteredSubcategories(category2)} />
+              <Category2Group items={getFilteredCategories2(category2)} />
             </div>
           )}
         </div>
@@ -121,7 +124,7 @@ function App() {
         <div class='row'>
           {categoryPath() && (
             <div>
-              <Category3Group items={getFilteredSubcategories(category3)} />
+              <Category3Group items={getFilteredCategories3(category3)} />
             </div>
           )}
         </div>
