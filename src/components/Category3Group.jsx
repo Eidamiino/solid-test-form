@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 import Category3 from "./Category3";
 
 export default function Category3Group(props) {
@@ -12,7 +12,15 @@ export default function Category3Group(props) {
 
         const event = new Event('urlChangeCategory1');
         window.dispatchEvent(event);
+
+        
     };
+    createEffect(() => {
+        if (selectedIndex() === null) {
+            changeSelected(0);
+        }
+    });
+    
 
     return (
         <div>

@@ -1,9 +1,10 @@
-import { createSignal } from "solid-js";
+import { createSignal, createEffect } from "solid-js";
 import Category2 from "./Category2";
 
 export default function Category2Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
     const changeSelected = (index) => {
+        console.log("lold")
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);
@@ -11,8 +12,16 @@ export default function Category2Group(props) {
         window.history.pushState(null, '', url.toString());
 
         const event = new Event('urlChangeCategory1');
-        window.dispatchEvent(event);
+        window.dispatchEvent(event); 
     };
+    createEffect(() => {
+        console.log("zkouskasiren" + selectedIndex())
+        if (selectedIndex() === null) {
+            changeSelected(0);
+        }
+    });
+    
+    
 
     return (
         <div>
