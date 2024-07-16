@@ -4,7 +4,6 @@ import Category1 from "./Category1";
 export default function Category1Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
     const changeSelected = (index) => {
-        console.log("old"+selectedIndex());
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);

@@ -4,7 +4,6 @@ import Category2 from "./Category2";
 export default function Category2Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
     const changeSelected = (index) => {
-        console.log("lold")
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);
