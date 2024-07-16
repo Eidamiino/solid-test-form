@@ -1,4 +1,8 @@
 import { createEffect } from "solid-js";
+import Category1Group from "./Category1Group";
+import Category2Group from "./Category2Group";
+import Category3Group from "./Category3Group";
+
 export default function Category(props) {
     var highlightedFullCodeLevel1 = ""
     var highlightedFullCodeLevel2 = ""
@@ -17,6 +21,29 @@ export default function Category(props) {
     return (
         <div>
             <p>CategoryPath: {props.categoryPath}</p>
+            <div class='categories level-1' style="display:flex; justify-content:center;">
+                <div class="row">
+                    <Category1Group items={props.inputArray}></Category1Group>
+                </div>
+            </div>
+            <div class='categories level-2' style="display:flex; justify-content:center;">
+                <div class='row'>
+                    
+                        <div>
+                            <Category2Group items={props.inputArray} />
+                        </div>
+                    
+                </div>
+            </div>
+            <div class='categories level-3' style="display:flex; justify-content:center;">
+                <div class='row'>
+                    
+                        <div>
+                            <Category3Group items={props.inputArray} />
+                        </div>
+                    
+                </div>
+            </div>
         </div>
     );
 }
