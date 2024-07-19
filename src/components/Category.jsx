@@ -16,9 +16,22 @@ export default function Category(props) {
 
         highlightedFullCodeLevel1 = splitCategoryPath[0]
         if (splitCategoryPath[1]) highlightedFullCodeLevel2 = splitCategoryPath[1]
+        else highlightedFullCodeLevel2=getDefaultCategory2()[1]
+
         if (splitCategoryPath[2]) highlightedFullCodeLevel3 = splitCategoryPath[2]
+        else highlightedFullCodeLevel3=getFilteredCategories3Simple(props.inputArray, highlightedFullCodeLevel1+"."+highlightedFullCodeLevel2)[0].categoryFullCode.split(".")[2]
+
+        console.log("highligh1:"+highlightedFullCodeLevel1)
+        console.log("highligh2:" + highlightedFullCodeLevel2)
+        console.log("highligh3:" + highlightedFullCodeLevel3)
 
     })
+    const getDefaultCategory2=()=>{
+        console.log("co to vracim??" + getFilteredCategories2(props.inputArray)[0].categoryFullCode.split("."))
+        return getFilteredCategories2(props.inputArray)[0].categoryFullCode.split(".")
+    }
+
+
     const getSplitCategoryPath = () => {
         return props.categoryPath.split(".")
     }
@@ -28,6 +41,10 @@ export default function Category(props) {
     };
     const getFilteredCategories3 = (categories) => {
         return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0] + "." + getSplitCategoryPath()[1]));
+    };
+
+    const getFilteredCategories3Simple = (categories, customCategoryPath) => {
+        return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(customCategoryPath));
     };
 
     return (

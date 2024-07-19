@@ -15,6 +15,7 @@ export default function Category1Group(props) {
     };
     createEffect(() => {
         if (selectedIndex() === null) {
+            console.log("hroch se deje")
             changeSelected(0);
         }
     });
