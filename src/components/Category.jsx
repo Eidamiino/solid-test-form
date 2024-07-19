@@ -1,11 +1,10 @@
-import { createEffect } from "solid-js";
+import { createEffect, createSignal } from "solid-js";
 import Category1Group from "./Category1Group";
 import Category2Group from "./Category2Group";
 import Category3Group from "./Category3Group";
 
 export default function Category(props) {
     var group1InputArray = props.inputArray.filter(item => item.categoryLevel == 1)
-
 
     var highlightedFullCodeLevel1 = ""
     var highlightedFullCodeLevel2 = ""
@@ -41,7 +40,6 @@ export default function Category(props) {
     };
     const getFilteredCategories3 = (categories) => {
         if(!getSplitCategoryPath()[1]){
-            console.log("JUPIIIIIII" + getSplitCategoryPath()[0] + "." + highlightedFullCodeLevel2)
             return getFilteredCategories3Simple(props.inputArray, getSplitCategoryPath()[0] + "." + highlightedFullCodeLevel2)
         } 
         return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0] + "." + getSplitCategoryPath()[1]));
@@ -50,7 +48,6 @@ export default function Category(props) {
     const getFilteredCategories3Simple = (categories, customCategoryPath) => {
         return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(customCategoryPath));
     };
-
     
 
     return (

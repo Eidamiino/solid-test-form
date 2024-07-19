@@ -1792,41 +1792,9 @@ function App() {
     window.addEventListener('urlChangeCategory1', changeUrl);
   });
 
-  // const getFilteredCategories3 = (categories) => {
-  //   if (!categoryPath()) return [];
-  //   return categories.filter(subcategory => subcategory.categoryFullCode.split(".")[0] + subcategory.categoryFullCode.split(".")[1] == categoryPath().split(".")[0] + categoryPath().split(".")[1]);
-  // };
-  // const getFilteredCategories2 = (categories) => {
-  //   if (!categoryPath()) return [];
-  //   return categories.filter(subcategory => subcategory.categoryFullCode.split(".")[0] == categoryPath().split(".")[0]);
-  // };
-
   return (
     <div>
       <Category inputArray={inputArray} categoryPath={categoryPath()} ></Category>
-      {/* <div class='categories level-1' style="display:flex; justify-content:center;">
-        <div class="row">
-          <Category1Group items={category1}></Category1Group>
-        </div>
-      </div>
-      <div class='categories level-2' style="display:flex; justify-content:center;">
-        <div class='row'>
-          {categoryPath() && (
-            <div>
-              <Category2Group items={getFilteredCategories2(category2)} />
-            </div>
-          )}
-        </div>
-      </div>
-      <div class='categories level-3' style="display:flex; justify-content:center;">
-        <div class='row'>
-          {categoryPath() && (
-            <div>
-              <Category3Group items={getFilteredCategories3(category3)} />
-            </div>
-          )}
-        </div>
-      </div> */}
     </div>
   );
 }

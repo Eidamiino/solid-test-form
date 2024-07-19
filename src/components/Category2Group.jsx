@@ -12,14 +12,24 @@ export default function Category2Group(props) {
 
         const event = new Event('urlChangeCategory1');
         window.dispatchEvent(event); 
+
+        const indexEvent = new Event("resetIndexes2")
+        window.dispatchEvent(indexEvent)
     };
     createEffect(() => {
         console.log("zkouskasiren" + selectedIndex())
         if (selectedIndex() === null) {
             changeSelected(0);
         }
+
+        window.addEventListener('resetIndexes', resetSelectedIndex);
     });
-    
+
+    const resetSelectedIndex = () => {
+        console.log("hip hpi huraaa")
+        changeSelected(0)
+    }
+
     
 
     return (

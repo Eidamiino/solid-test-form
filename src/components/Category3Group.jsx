@@ -19,7 +19,15 @@ export default function Category3Group(props) {
         if (selectedIndex() === null) {
             changeSelected(0);
         }
+        window.addEventListener('resetIndexes', resetSelectedIndex);
+        window.addEventListener('resetIndexes2', resetSelectedIndex);
     });
+
+
+    const resetSelectedIndex = () => {
+        console.log("hip hpi huraaa")
+        changeSelected(0)
+    }
     
 
     return (

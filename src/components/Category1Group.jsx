@@ -12,6 +12,9 @@ export default function Category1Group(props) {
 
         const event = new Event('urlChangeCategory1');
         window.dispatchEvent(event);
+
+        const indexEvent = new Event("resetIndexes")
+        window.dispatchEvent(indexEvent)
     };
     createEffect(() => {
         if (selectedIndex() === null) {
