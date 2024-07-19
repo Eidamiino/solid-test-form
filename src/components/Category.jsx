@@ -40,12 +40,18 @@ export default function Category(props) {
         return categories.filter(subcategory => subcategory.categoryLevel == 2 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0]));
     };
     const getFilteredCategories3 = (categories) => {
+        if(!getSplitCategoryPath()[1]){
+            console.log("JUPIIIIIII" + getSplitCategoryPath()[0] + "." + highlightedFullCodeLevel2)
+            return getFilteredCategories3Simple(props.inputArray, getSplitCategoryPath()[0] + "." + highlightedFullCodeLevel2)
+        } 
         return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0] + "." + getSplitCategoryPath()[1]));
     };
 
     const getFilteredCategories3Simple = (categories, customCategoryPath) => {
         return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(customCategoryPath));
     };
+
+    
 
     return (
         <div>
