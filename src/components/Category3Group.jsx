@@ -31,7 +31,7 @@ export default function Category3Group(props) {
     
 
     return (
-        <div>
+        <div class="row">
             {props.items.map((category, index) => (
                 <Category3
                     index={index}
@@ -39,6 +39,7 @@ export default function Category3Group(props) {
                     icon={category.categoryIcon}
                     selected={selectedIndex() == index}
                     onSelect={() => changeSelected(index)}
+                    scopes={category.scopes}
                 />
             ))}
         </div>

@@ -52,7 +52,6 @@ export default function Category(props) {
 
     return (
         <div>
-            <p>CategoryPath: {props.categoryPath}</p>
             <div class='categories level-1' style="display:flex; justify-content:center;">
                 <div class="row">
                     <Category1Group items={group1InputArray}></Category1Group>
