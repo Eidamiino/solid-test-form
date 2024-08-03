@@ -1,5 +1,6 @@
 import { createSignal, createEffect } from 'solid-js';
 import Category from './components/Category';
+import { urlParams, events } from './constants';
 
 const inputArray = [
   {
@@ -1774,10 +1775,9 @@ const inputArray = [
 
 
 function getUrlParams(url) {
-  console.log("test"+url);
   const params = new URLSearchParams(url.substring(1));
   return {
-    categoryPath: params.get('categoryPath'),
+    categoryPath: params.get(urlParams.categoryPath),
   };
 }
 
@@ -1789,7 +1789,7 @@ function App() {
   };
 
   createEffect(() => {
-    window.addEventListener('urlChangeCategory1', changeUrl);
+    window.addEventListener(events.categoryChanged, changeUrl);
   });
 
   return (

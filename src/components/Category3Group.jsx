@@ -1,5 +1,7 @@
 import { createSignal, createEffect } from "solid-js";
 import Category3 from "./Category3";
+import { urlParams, events } from "../constants";
+
 
 export default function Category3Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
@@ -7,10 +9,10 @@ export default function Category3Group(props) {
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);
-        url.searchParams.set('categoryPath', props.items[index].categoryFullCode);
+        url.searchParams.set(urlParams.categoryPath, props.items[index].categoryFullCode);
         window.history.pushState(null, '', url.toString());
 
-        const event = new Event('urlChangeCategory1');
+        const event = new Event(events.categoryChanged);
         window.dispatchEvent(event);
 
         
@@ -19,13 +21,12 @@ export default function Category3Group(props) {
         if (selectedIndex() === null) {
             changeSelected(0);
         }
-        window.addEventListener('resetIndexes', resetSelectedIndex);
-        window.addEventListener('resetIndexes2', resetSelectedIndex);
+        window.addEventListener(events.resetIndexes, resetSelectedIndex);
+        window.addEventListener(events.resetIndexes2, resetSelectedIndex);
     });
 
 
     const resetSelectedIndex = () => {
-        console.log("hip hpi huraaa")
         changeSelected(0)
     }
     

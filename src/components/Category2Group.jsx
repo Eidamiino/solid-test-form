@@ -1,5 +1,7 @@
 import { createSignal, createEffect } from "solid-js";
 import Category2 from "./Category2";
+import { urlParams, events } from "../constants";
+
 
 export default function Category2Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
@@ -7,26 +9,23 @@ export default function Category2Group(props) {
         setSelectedIndex(index);
         
         const url = new URL(window.location.href);
-        url.searchParams.set('categoryPath', props.items[index].categoryFullCode);
+        url.searchParams.set(urlParams.categoryPath, props.items[index].categoryFullCode);
         window.history.pushState(null, '', url.toString());
 
-        const event = new Event('urlChangeCategory1');
+        const event = new Event(events.categoryChanged);
         window.dispatchEvent(event); 
 
-        const indexEvent = new Event("resetIndexes2")
+        const indexEvent = new Event(events.resetIndexes2)
         window.dispatchEvent(indexEvent)
     };
     createEffect(() => {
-        console.log("zkouskasiren" + selectedIndex())
         if (selectedIndex() === null) {
             changeSelected(0);
         }
-
-        window.addEventListener('resetIndexes', resetSelectedIndex);
+        window.addEventListener(events.resetIndexes, resetSelectedIndex);
     });
 
     const resetSelectedIndex = () => {
-        console.log("hip hpi huraaa")
         changeSelected(0)
     }
 
