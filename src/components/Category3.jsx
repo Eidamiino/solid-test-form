@@ -6,7 +6,6 @@ export default function Category3(props) {
 
     function parseScopes() {
             const parsedScopes = JSON.parse(props.scopes);
-            console.log('Parsed Scopes:', parsedScopes);
             setScopes(parsedScopes);
     }
 

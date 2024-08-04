@@ -22,7 +22,7 @@ export default function Category(props) {
         else highlightedFullCodeLevel2 = getDefaultCategory2()[1]
         //highlighted je treti cast categorypath jinak prvni mozna
         if (splitCategoryPath[2]) highlightedFullCodeLevel3 = splitCategoryPath[2]
-        else highlightedFullCodeLevel3 = getFilteredCategories3Simple(props.inputArray, highlightedFullCodeLevel1 + categoryPathDivider + highlightedFullCodeLevel2)[0].categoryFullCode.split(categoryPathDivider)[2]
+        else highlightedFullCodeLevel3 = getCategoriesStartsWith(props.inputArray, 3, highlightedFullCodeLevel1 + categoryPathDivider + highlightedFullCodeLevel2)[0].categoryFullCode.split(categoryPathDivider)[2]
 
     })
 
@@ -30,28 +30,29 @@ export default function Category(props) {
         return props.categoryPath.split(categoryPathDivider)
     }
 
+    const getCategoriesStartsWith=(categories, categoryLevel, startsWith)=>{
+        return categories.filter(category=>category.categoryLevel==categoryLevel && category.categoryFullCode.startsWith(startsWith))
+    }
+
+    const getDefaultCategory2 = () => {
+        return getFilteredCategories2(props.inputArray)[0].categoryFullCode.split(categoryPathDivider)
+    }
+    
     const getFilteredCategories2 = (categories) => {
         //level 2 a zacinaji momentalnim level 1
-        return categories.filter(subcategory => subcategory.categoryLevel == 2 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0]));
+        return getCategoriesStartsWith(props.inputArray, 2, getSplitCategoryPath()[0])
     };
 
     const getFilteredCategories3 = (categories) => {
         if (!getSplitCategoryPath()[1]) {
             //pokud categorypath nema level 2 => zacina na level1.defaultlevel2
-            return getFilteredCategories3Simple(props.inputArray, getSplitCategoryPath()[0] + categoryPathDivider + highlightedFullCodeLevel2)
+            return getCategoriesStartsWith(props.inputArray, 3, getSplitCategoryPath()[0] + categoryPathDivider + highlightedFullCodeLevel2)
         }
         //level 3 a zacina level1.level2
-        return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(getSplitCategoryPath()[0] + categoryPathDivider + getSplitCategoryPath()[1]));
+        return getCategoriesStartsWith(props.inputArray, 3, getSplitCategoryPath()[0] + categoryPathDivider + getSplitCategoryPath()[1])
     };
 
-    const getDefaultCategory2 = () => {
-        return getFilteredCategories2(props.inputArray)[0].categoryFullCode.split(categoryPathDivider)
-    }
-
-    const getFilteredCategories3Simple = (categories, customCategoryPath) => {
-        //level 3 a zacina na vybrany string
-        return categories.filter(subcategory => subcategory.categoryLevel == 3 && subcategory.categoryFullCode.startsWith(customCategoryPath));
-    };
+    
 
 
     return (
