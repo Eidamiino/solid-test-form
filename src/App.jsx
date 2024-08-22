@@ -1776,6 +1776,11 @@ const inputArray = [
 
 function getUrlParams(url) {
   const params = new URLSearchParams(url.substring(1));
+
+  if(!params.get(urlParams.categoryPath)) return {
+    categoryPath:"produkty",
+  };
+
   return {
     categoryPath: params.get(urlParams.categoryPath),
   };
