@@ -30,14 +30,14 @@ export default function Category(props) {
         return props.categoryPath.split(categoryPathDivider)
     }
 
-    const getCategoriesStartsWith=(categories, categoryLevel, startsWith)=>{
-        return categories.filter(category=>category.categoryLevel==categoryLevel && category.categoryFullCode.startsWith(startsWith))
+    const getCategoriesStartsWith = (categories, categoryLevel, startsWith) => {
+        return categories.filter(category => category.categoryLevel == categoryLevel && category.categoryFullCode.startsWith(startsWith))
     }
 
     const getDefaultCategory2 = () => {
         return getFilteredCategories2(props.inputArray)[0].categoryFullCode.split(categoryPathDivider)
     }
-    
+
     const getFilteredCategories2 = (categories) => {
         //level 2 a zacinaji momentalnim level 1
         return getCategoriesStartsWith(props.inputArray, 2, getSplitCategoryPath()[0])
@@ -52,34 +52,28 @@ export default function Category(props) {
         return getCategoriesStartsWith(props.inputArray, 3, getSplitCategoryPath()[0] + categoryPathDivider + getSplitCategoryPath()[1])
     };
 
-    
+
 
 
     return (
-        <div>
-            <div class='categories level-1' style="display:flex; justify-content:center;">
-                <div class="row">
-                    <Category1Group items={group1InputArray}></Category1Group>
-                </div>
+        <>
+            <div class="row justify-content-md-center mt-4">
+                <Category1Group items={group1InputArray}></Category1Group>
             </div>
-            <div class='categories level-2' style="display:flex; justify-content:center;">
-                <div class='row'>
 
-                    <div>
-                        <Category2Group items={getFilteredCategories2(props.inputArray)} />
-                    </div>
+            <div class="row justify-content-md-center mt-4">
 
-                </div>
+                <Category2Group items={getFilteredCategories2(props.inputArray)} />
+
             </div>
-            <div class='categories level-3' style="display:flex; justify-content:center;">
-                <div class='row'>
 
-                    <div>
-                        <Category3Group items={getFilteredCategories3(props.inputArray)} />
-                    </div>
 
-                </div>
+            <div class="row justify-content-md-center mt-4">
+
+                <Category3Group items={getFilteredCategories3(props.inputArray)} />
+
             </div>
-        </div>
+
+        </>
     );
 }

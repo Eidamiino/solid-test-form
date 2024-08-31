@@ -32,7 +32,7 @@ export default function Category2Group(props) {
     
 
     return (
-        <div>
+        <>
             {props.items.map((category, index) => (
                 <Category2
                     index={index}
@@ -42,6 +42,6 @@ export default function Category2Group(props) {
                     onSelect={() => changeSelected(index)}
                 />
             ))}
-        </div>
+        </>
     );
 }

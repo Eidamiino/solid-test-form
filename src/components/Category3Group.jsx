@@ -32,7 +32,7 @@ export default function Category3Group(props) {
     
 
     return (
-        <div class="row">
+        <>
             {props.items.map((category, index) => (
                 <Category3
                     index={index}
@@ -43,6 +43,6 @@ export default function Category3Group(props) {
                     scopes={category.scopes}
                 />
             ))}
-        </div>
+        </>
     );
 }

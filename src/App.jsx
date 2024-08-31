@@ -1798,7 +1798,7 @@ function App() {
   });
 
   return (
-    <div>
+    <div class='container'>
       <Category inputArray={inputArray} categoryPath={categoryPath()} ></Category>
     </div>
   );
