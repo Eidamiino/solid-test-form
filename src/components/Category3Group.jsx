@@ -35,26 +35,34 @@ export default function Category3Group(props) {
 
     return (
         <>
-            {props.items.map((category, index) => (
-                <>
-                    <div class="col-3 d-flex flex-column">
+            <div class="col-3 d-flex flex-column">
+                {props.items.map((category, index) => (
+                    <>
+
                         <Category3Button
                             selected={selectedIndex() == index}
                             icon={category.categoryIcon}
                             title={category.categoryTitle}
                             onSelect={() => changeSelected(index)}
                         />
-                    </div>
-                    <div class="col-9">
-                        <div class="row">
+                    </>
+                ))}
+            </div>
+
+            <div class="col-9">
+                <div class="row">
+                    {props.items.map((category, index) => (
+                        <>
+
                             <Category3Scopes
                                 selected={selectedIndex() == index}
                                 scopes={category.scopes}
                             />
-                        </div>
-                    </div >
-                </>
-            ))}
+
+                        </>
+                    ))}
+                </div>
+            </div >
         </>
     );
 }

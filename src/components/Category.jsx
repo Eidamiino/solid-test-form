@@ -67,7 +67,7 @@ export default function Category(props) {
                 <Category2Group items={getFilteredCategories2(props.inputArray)} />
             </div>
 
-            <div class="row justify-content-md-center mt-4">
+            <div class="row justify-content-md-center mt-5">
                 <Category3Group items={getFilteredCategories3(props.inputArray)} />
             </div>
 
