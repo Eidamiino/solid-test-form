@@ -61,17 +61,14 @@ export default function Category(props) {
                 <Category1Group items={group1InputArray}></Category1Group>
             </div>
 
+            <hr class="hr hr-blurry" />
+
             <div class="row justify-content-md-center mt-4">
-
                 <Category2Group items={getFilteredCategories2(props.inputArray)} />
-
             </div>
 
-
             <div class="row justify-content-md-center mt-4">
-
                 <Category3Group items={getFilteredCategories3(props.inputArray)} />
-
             </div>
 
         </>
