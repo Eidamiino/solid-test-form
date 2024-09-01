@@ -1,5 +1,4 @@
 import { createSignal, createEffect } from "solid-js";
-import Category3 from "./Category3";
 import Category3Button from "./Category3Button";
 import Category3Scopes from "./Category3Scopes";
 import { urlParams, events } from "../constants";
