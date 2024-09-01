@@ -1,5 +1,7 @@
 import { createSignal, createEffect } from "solid-js";
 import Category3 from "./Category3";
+import Category3Button from "./Category3Button";
+import Category3Scopes from "./Category3Scopes";
 import { urlParams, events } from "../constants";
 
 
@@ -7,7 +9,7 @@ export default function Category3Group(props) {
     const [selectedIndex, setSelectedIndex] = createSignal(null);
     const changeSelected = (index) => {
         setSelectedIndex(index);
-        
+
         const url = new URL(window.location.href);
         url.searchParams.set(urlParams.categoryPath, props.items[index].categoryFullCode);
         window.history.pushState(null, '', url.toString());
@@ -15,7 +17,7 @@ export default function Category3Group(props) {
         const event = new Event(events.categoryChanged);
         window.dispatchEvent(event);
 
-        
+
     };
     createEffect(() => {
         if (selectedIndex() === null) {
@@ -29,19 +31,29 @@ export default function Category3Group(props) {
     const resetSelectedIndex = () => {
         changeSelected(0)
     }
-    
+
 
     return (
         <>
             {props.items.map((category, index) => (
-                <Category3
-                    index={index}
-                    title={category.categoryTitle}
-                    icon={category.categoryIcon}
-                    selected={selectedIndex() == index}
-                    onSelect={() => changeSelected(index)}
-                    scopes={category.scopes}
-                />
+                <>
+                    <div class="col-3 d-flex flex-column">
+                        <Category3Button
+                            selected={selectedIndex() == index}
+                            icon={category.categoryIcon}
+                            title={category.categoryTitle}
+                            onSelect={() => changeSelected(index)}
+                        />
+                    </div>
+                    <div class="col-9">
+                        <div class="row">
+                            <Category3Scopes
+                                selected={selectedIndex() == index}
+                                scopes={category.scopes}
+                            />
+                        </div>
+                    </div >
+                </>
             ))}
         </>
     );
